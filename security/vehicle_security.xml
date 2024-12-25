@@ -1,0 +1,32 @@
+<odoo>
+    <data noupdate="0">
+
+        <!-- Grupo de Seguridad -->
+        <record id="group_vehicle_manager" model="res.groups">
+            <field name="name">Vehicle Manager</field>
+        </record>       
+
+        <!-- Reglas de Seguridad -->
+        <record id="rule_vehicle_manager" model="ir.rule">
+            <field name="name">Vehicle Manager Access</field>
+            <field name="model_id" ref="model_my_company_vehicle" />
+            <field name="groups" eval="[(4, ref('group_vehicle_manager'))]" />
+            <field name="domain_force">[('id', '!=', False)]</field>
+        </record>        
+
+        <record model="ir.rule" id="rule_vehicle_user">
+            <field name="name">Vehicle User Read-Only</field>
+            <field name="model_id" ref="model_my_company_vehicle" />
+            <field name="groups" eval="[(4, ref('base.group_user'))]" />
+            <field eval="True" name="active" />
+            <field name="domain_force">[('id', '!=', False)]</field>
+            <field eval="True" name="perm_read" />
+            <field eval="False" name="perm_write" />
+            <field eval="False" name="perm_create" />
+            <field eval="False" name="perm_unlink" />            
+        </record> 
+    </data>
+
+</odoo>
+
+<!-- pendiente por revisar la parte de las reglas de seguridad. -->

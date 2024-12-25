@@ -1,0 +1,12 @@
+<odoo>
+  <record id="action_vehicle" model="ir.actions.act_window">
+    <field name="name">Vehicles</field>
+    <field name="res_model">my.company.vehicle</field>
+    <field name="view_mode">kanban,tree,form</field>
+  </record>
+
+  <menuitem id="menu_fleet_management" name="Fleet Management" sequence="10"/>
+  <menuitem id="menu_vehicle" name="Vehicles" parent="menu_fleet_management"
+    action="action_vehicle" groups="test_fleet_vehicle_management.group_vehicle_manager,base.group_user" />
+
+</odoo>

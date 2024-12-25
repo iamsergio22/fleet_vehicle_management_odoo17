@@ -1,0 +1,51 @@
+<odoo>
+    <record id="view_vehicle_kanban" model="ir.ui.view">
+        <field name="name">my.company.vehicle.kanban</field>
+        <field name="model">my.company.vehicle</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="license_plate"/>
+                <field name="needs_service"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <strong><field name="name"/></strong>
+                            <div>License Plate: <field name="license_plate"/></div>
+                            <div>Needs Service: <field name="needs_service"/></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_vehicle_form" model="ir.ui.view">
+        <field name="name">my.company.vehicle.form</field>
+        <field name="model">my.company.vehicle</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="schedule_service" type="object" string="Schedule Service" class="oe_stat_button btn btn-success"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="license_plate"/>
+                            <field name="partner_id"/>
+                        </group>
+                        <group>
+                            <field name="fuel_type"/>
+                            <field name="mileage"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="last_service_date"/>
+                        <field name="needs_service" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
