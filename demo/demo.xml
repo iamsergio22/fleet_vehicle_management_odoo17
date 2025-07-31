@@ -1,30 +1,221 @@
 <odoo>
-    <data>
-<!--
-          <record id="object0" model="test_fleet_vehicle_management.test_fleet_vehicle_management">
-            <field name="name">Object 0</field>
-            <field name="value">0</field>
-          </record>
+    <data noupdate="1">
+        <!-- Demo Partners/Companies -->
+        <record id="demo_partner_company_a" model="res.partner">
+            <field name="name">Acme Corporation</field>
+            <field name="is_company" eval="True"/>
+            <field name="street">123 Business Ave</field>
+            <field name="city">New York</field>
+            <field name="zip">10001</field>
+            <field name="country_id" ref="base.us"/>
+            <field name="phone">+1-555-0101</field>
+            <field name="email">fleet@acme.com</field>
+        </record>
 
-          <record id="object1" model="test_fleet_vehicle_management.test_fleet_vehicle_management">
-            <field name="name">Object 1</field>
-            <field name="value">10</field>
-          </record>
+        <record id="demo_partner_company_b" model="res.partner">
+            <field name="name">TechStart Solutions</field>
+            <field name="is_company" eval="True"/>
+            <field name="street">456 Innovation Drive</field>
+            <field name="city">San Francisco</field>
+            <field name="zip">94102</field>
+            <field name="country_id" ref="base.us"/>
+            <field name="phone">+1-555-0202</field>
+            <field name="email">vehicles@techstart.com</field>
+        </record>
 
-          <record id="object2" model="test_fleet_vehicle_management.test_fleet_vehicle_management">
-            <field name="name">Object 2</field>
-            <field name="value">20</field>
-          </record>
+        <record id="demo_partner_company_c" model="res.partner">
+            <field name="name">Green Logistics Ltd</field>
+            <field name="is_company" eval="True"/>
+            <field name="street">789 Eco Street</field>
+            <field name="city">Portland</field>
+            <field name="zip">97201</field>
+            <field name="country_id" ref="base.us"/>
+            <field name="phone">+1-555-0303</field>
+            <field name="email">fleet@greenlogistics.com</field>
+        </record>
 
-          <record id="object3" model="test_fleet_vehicle_management.test_fleet_vehicle_management">
-            <field name="name">Object 3</field>
-            <field name="value">30</field>
-          </record>
+        <record id="demo_partner_individual_a" model="res.partner">
+            <field name="name">John Smith</field>
+            <field name="is_company" eval="False"/>
+            <field name="street">321 Personal Lane</field>
+            <field name="city">Chicago</field>
+            <field name="zip">60601</field>
+            <field name="country_id" ref="base.us"/>
+            <field name="phone">+1-555-0404</field>
+            <field name="email">john.smith@email.com</field>
+        </record>
 
-          <record id="object4" model="test_fleet_vehicle_management.test_fleet_vehicle_management">
-            <field name="name">Object 4</field>
-            <field name="value">40</field>
-          </record>
--->
+        <record id="demo_partner_individual_b" model="res.partner">
+            <field name="name">Maria Garcia</field>
+            <field name="is_company" eval="False"/>
+            <field name="street">654 Family Road</field>
+            <field name="city">Miami</field>
+            <field name="zip">33101</field>
+            <field name="country_id" ref="base.us"/>
+            <field name="phone">+1-555-0505</field>
+            <field name="email">maria.garcia@email.com</field>
+        </record>
+
+        <!-- Demo Vehicles - Acme Corporation -->
+        <record id="demo_vehicle_acme_1" model="my.company.vehicle">
+            <field name="name">Acme Delivery Van 1</field>
+            <field name="license_plate">NYC-1234</field>
+            <field name="fuel_type">diesel</field>
+            <field name="mileage" eval="18500.0"/>
+            <field name="last_service_date" eval="(DateTime.today() - relativedelta(months=4)).strftime('%Y-%m-%d')"/>
+            <field name="partner_id" ref="demo_partner_company_a"/>
+        </record>
+
+        <record id="demo_vehicle_acme_2" model="my.company.vehicle">
+            <field name="name">Acme Sales Car Toyota</field>
+            <field name="license_plate">NYC-5678</field>
+            <field name="fuel_type">gasoline</field>
+            <field name="mileage" eval="22000.0"/>
+            <field name="last_service_date" eval="(DateTime.today() - relativedelta(months=7)).strftime('%Y-%m-%d')"/>
+            <field name="partner_id" ref="demo_partner_company_a"/>
+        </record>
+
+        <record id="demo_vehicle_acme_3" model="my.company.vehicle">
+            <field name="name">Acme Executive BMW</field>
+            <field name="license_plate">NYC-9012</field>
+            <field name="fuel_type">gasoline</field>
+            <field name="mileage" eval="8500.0"/>
+            <field name="last_service_date" eval="(DateTime.today() - relativedelta(months=2)).strftime('%Y-%m-%d')"/>
+            <field name="partner_id" ref="demo_partner_company_a"/>
+        </record>
+
+        <!-- Demo Vehicles - TechStart Solutions -->
+        <record id="demo_vehicle_techstart_1" model="my.company.vehicle">
+            <field name="name">TechStart Tesla Model 3</field>
+            <field name="license_plate">SF-ELEC1</field>
+            <field name="fuel_type">electric</field>
+            <field name="mileage" eval="0.0"/>
+            <field name="last_service_date" eval="(DateTime.today() - relativedelta(months=1)).strftime('%Y-%m-%d')"/>
+            <field name="partner_id" ref="demo_partner_company_b"/>
+        </record>
+
+        <record id="demo_vehicle_techstart_2" model="my.company.vehicle">
+            <field name="name">TechStart Nissan Leaf</field>
+            <field name="license_plate">SF-ELEC2</field>
+            <field name="fuel_type">electric</field>
+            <field name="mileage" eval="0.0"/>
+            <field name="last_service_date" eval="(DateTime.today() - relativedelta(months=3)).strftime('%Y-%m-%d')"/>
+            <field name="partner_id" ref="demo_partner_company_b"/>
+        </record>
+
+        <record id="demo_vehicle_techstart_3" model="my.company.vehicle">
+            <field name="name">TechStart Hybrid Prius</field>
+            <field name="license_plate">SF-HYBR1</field>
+            <field name="fuel_type">gasoline</field>
+            <field name="mileage" eval="15000.0"/>
+            <field name="last_service_date" eval="(DateTime.today() - relativedelta(months=5)).strftime('%Y-%m-%d')"/>
+            <field name="partner_id" ref="demo_partner_company_b"/>
+        </record>
+
+        <!-- Demo Vehicles - Green Logistics Ltd -->
+        <record id="demo_vehicle_green_1" model="my.company.vehicle">
+            <field name="name">Green Logistics Electric Van</field>
+            <field name="license_plate">PDX-GRN1</field>
+            <field name="fuel_type">electric</field>
+            <field name="mileage" eval="0.0"/>
+            <field name="last_service_date" eval="(DateTime.today() - relativedelta(months=2)).strftime('%Y-%m-%d')"/>
+            <field name="partner_id" ref="demo_partner_company_c"/>
+        </record>
+
+        <record id="demo_vehicle_green_2" model="my.company.vehicle">
+            <field name="name">Green Logistics Diesel Truck</field>
+            <field name="license_plate">PDX-GRN2</field>
+            <field name="fuel_type">diesel</field>
+            <field name="mileage" eval="35000.0"/>
+            <field name="last_service_date" eval="(DateTime.today() - relativedelta(months=8)).strftime('%Y-%m-%d')"/>
+            <field name="partner_id" ref="demo_partner_company_c"/>
+        </record>
+
+        <record id="demo_vehicle_green_3" model="my.company.vehicle">
+            <field name="name">Green Logistics Hybrid SUV</field>
+            <field name="license_plate">PDX-GRN3</field>
+            <field name="fuel_type">gasoline</field>
+            <field name="mileage" eval="12000.0"/>
+            <field name="last_service_date" eval="(DateTime.today() - relativedelta(months=6)).strftime('%Y-%m-%d')"/>
+            <field name="partner_id" ref="demo_partner_company_c"/>
+        </record>
+
+        <!-- Demo Vehicles - Individual Owners -->
+        <record id="demo_vehicle_individual_1" model="my.company.vehicle">
+            <field name="name">John's Personal Honda Civic</field>
+            <field name="license_plate">CHI-JOHN</field>
+            <field name="fuel_type">gasoline</field>
+            <field name="mileage" eval="45000.0"/>
+            <field name="last_service_date" eval="(DateTime.today() - relativedelta(months=9)).strftime('%Y-%m-%d')"/>
+            <field name="partner_id" ref="demo_partner_individual_a"/>
+        </record>
+
+        <record id="demo_vehicle_individual_2" model="my.company.vehicle">
+            <field name="name">Maria's Family Minivan</field>
+            <field name="license_plate">MIA-MARIA</field>
+            <field name="fuel_type">gasoline</field>
+            <field name="mileage" eval="28000.0"/>
+            <field name="last_service_date" eval="(DateTime.today() - relativedelta(months=3)).strftime('%Y-%m-%d')"/>
+            <field name="partner_id" ref="demo_partner_individual_b"/>
+        </record>
+
+        <!-- Demo Vehicles - No Owner (Company Fleet) -->
+        <record id="demo_vehicle_company_1" model="my.company.vehicle">
+            <field name="name">Company Pool Car 1</field>
+            <field name="license_plate">COMP-001</field>
+            <field name="fuel_type">gasoline</field>
+            <field name="mileage" eval="18000.0"/>
+            <field name="last_service_date" eval="(DateTime.today() - relativedelta(months=4)).strftime('%Y-%m-%d')"/>
+        </record>
+
+        <record id="demo_vehicle_company_2" model="my.company.vehicle">
+            <field name="name">Company Pool Car 2</field>
+            <field name="license_plate">COMP-002</field>
+            <field name="fuel_type">diesel</field>
+            <field name="mileage" eval="25000.0"/>
+            <field name="last_service_date" eval="(DateTime.today() - relativedelta(months=7)).strftime('%Y-%m-%d')"/>
+        </record>
+
+        <record id="demo_vehicle_company_3" model="my.company.vehicle">
+            <field name="name">Company Electric Car</field>
+            <field name="license_plate">COMP-003</field>
+            <field name="fuel_type">electric</field>
+            <field name="mileage" eval="0.0"/>
+            <field name="last_service_date" eval="(DateTime.today() - relativedelta(months=1)).strftime('%Y-%m-%d')"/>
+        </record>
+
+        <!-- Demo Vehicles - Edge Cases for Testing -->
+        <record id="demo_vehicle_edge_1" model="my.company.vehicle">
+            <field name="name">High Mileage Vehicle</field>
+            <field name="license_plate">EDGE-001</field>
+            <field name="fuel_type">diesel</field>
+            <field name="mileage" eval="75000.0"/>
+            <field name="last_service_date" eval="(DateTime.today() - relativedelta(months=1)).strftime('%Y-%m-%d')"/>
+        </record>
+
+        <record id="demo_vehicle_edge_2" model="my.company.vehicle">
+            <field name="name">Old Service Vehicle</field>
+            <field name="license_plate">EDGE-002</field>
+            <field name="fuel_type">gasoline</field>
+            <field name="mileage" eval="5000.0"/>
+            <field name="last_service_date" eval="(DateTime.today() - relativedelta(months=12)).strftime('%Y-%m-%d')"/>
+        </record>
+
+        <record id="demo_vehicle_edge_3" model="my.company.vehicle">
+            <field name="name">New Vehicle No Service</field>
+            <field name="license_plate">EDGE-003</field>
+            <field name="fuel_type">gasoline</field>
+            <field name="mileage" eval="1000.0"/>
+            <field name="last_service_date" eval="False"/>
+        </record>
+
+        <record id="demo_vehicle_edge_4" model="my.company.vehicle">
+            <field name="name">Zero Mileage Vehicle</field>
+            <field name="license_plate">EDGE-004</field>
+            <field name="fuel_type">electric</field>
+            <field name="mileage" eval="0.0"/>
+            <field name="last_service_date" eval="False"/>
+        </record>
+
     </data>
 </odoo>

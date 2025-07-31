@@ -7,6 +7,6 @@
 
   <menuitem id="menu_fleet_management" name="Fleet Management" sequence="10"/>
   <menuitem id="menu_vehicle" name="Vehicles" parent="menu_fleet_management"
-    action="action_vehicle" groups="test_fleet_vehicle_management.group_vehicle_manager,base.group_user" />
+    action="action_vehicle" groups="fleet_vehicle_management_odoo17.group_vehicle_manager,base.group_user" />
 
 </odoo>
